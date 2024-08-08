@@ -46,7 +46,7 @@ class LinkedList
 
     prev = Node.new
     curr = self.head
-    # binding.pry
+
     while !curr.next_node.nil?
       prev = curr
       curr = curr.next_node
@@ -54,12 +54,12 @@ class LinkedList
 
     prev.next_node = nil
     self.tail = prev
-    return curr.value
+    curr.value
   end
 
   def contains?(value)
     contains_value = false
-    
+
     self.for_each do |node|
       contains_value = (node.value == value)
 
@@ -67,7 +67,20 @@ class LinkedList
         return contains_value
       end
     end
-    return contains_value
+    contains_value
+  end
+
+  def find(value)
+    i = 0
+    self.for_each do |node| 
+      return i if value == node.value
+      i += 1
+      end
+  end
+
+  def to_s
+    self.for_each {|node| print "( #{node.value} ) -> "}  
+    puts "nil"
   end
 
   private
@@ -84,21 +97,11 @@ end
 
 list = LinkedList.new
 
-# p list
 list.append('dog')
-list.prepend('cat')
-# p list.inspect
-
+list.append('cat')
 list.append('parrot')
-# puts list.size
-# puts list.head.value
-# puts list.tail.value
-# puts list.at(2)
-p list.size
-puts "Node popped: #{list.pop}"
-p list.size
-p list
-puts list.contains?('cat')
-# list.append('hamster')
-# list.append('snake')
-# list.append('turtle')
+list.append('hamster')
+list.append('snake')
+list.append('turtle')
+
+puts list
