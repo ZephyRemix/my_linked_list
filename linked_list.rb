@@ -57,6 +57,19 @@ class LinkedList
     return curr.value
   end
 
+  def contains?(value)
+    contains_value = false
+    
+    self.for_each do |node|
+      contains_value = (node.value == value)
+
+      if contains_value == true
+        return contains_value
+      end
+    end
+    return contains_value
+  end
+
   private
 
   def for_each
@@ -85,6 +98,7 @@ p list.size
 puts "Node popped: #{list.pop}"
 p list.size
 p list
+puts list.contains?('cat')
 # list.append('hamster')
 # list.append('snake')
 # list.append('turtle')
