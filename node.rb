@@ -3,6 +3,6 @@ class Node
 
   def initialize(value = nil, next_node = nil)
     self.value = value
-    self.next = next_node
+    self.next_node = next_node
   end
 end 
