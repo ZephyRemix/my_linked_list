@@ -34,17 +34,39 @@ class LinkedList
     return count
   end
 
+  def at(index)
+    i = 0
+    self.for_each do |node|
+      return node if i == index
+      i += 1
+    end
+  end
+  
+  def pop
+
+    prev = Node.new
+    curr = self.head
+    # binding.pry
+    while !curr.next_node.nil?
+      prev = curr
+      curr = curr.next_node
+    end
+
+    prev.next_node = nil
+    self.tail = prev
+    return curr.value
+  end
+
   private
 
   def for_each
     tmp = self.head
-
+    
     while (tmp != nil)
       yield(tmp)
       tmp = tmp.next_node
     end
   end
-
 end
 
 list = LinkedList.new
@@ -55,9 +77,14 @@ list.prepend('cat')
 # p list.inspect
 
 list.append('parrot')
-puts list.size
-puts list.head.value
-puts list.tail.value
+# puts list.size
+# puts list.head.value
+# puts list.tail.value
+# puts list.at(2)
+p list.size
+puts "Node popped: #{list.pop}"
+p list.size
+p list
 # list.append('hamster')
 # list.append('snake')
 # list.append('turtle')
